@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
+    container_name: elasticsearch_taller
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      - elk_network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.10.2
+    container_name: kibana_taller
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - elk_network
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.10.2
+    container_name: logstash_taller
+    volumes:
+      # Mapeo del pipeline de configuración
+      - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
+      # Mapeo de la carpeta data para que lea el CSV, los logs y el JSON
+      - ./data:/usr/share/logstash/data:ro
+    depends_on:
+      - elasticsearch
+      - postgres
+    networks:
+      - elk_network
+
+  postgres:
+    image: postgres:15
+    container_name: postgres_taller
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - elk_network
+
+volumes:
+  es_data:
+    driver: local
+  postgres_data:
+    driver: local
+
+networks:
+  elk_network:
+    driver: bridge
