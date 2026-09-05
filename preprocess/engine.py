@@ -4,6 +4,5 @@ import os
 import json
 
 def engine():
-  path = download_data("olistbr/brazilian-ecommerce", "data/raw/olist_order_reviews_dataset.csv")
-  df = read_file(path)
-  print(df)
+  path = download_data("olistbr/brazilian-ecommerce", "data/raw/olist_order_reviews_dataset")
+  
