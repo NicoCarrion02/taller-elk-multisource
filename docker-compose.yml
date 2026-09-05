@@ -31,9 +31,7 @@ services:
     image: docker.elastic.co/logstash/logstash:8.10.2
     container_name: logstash_taller
     volumes:
-      # Mapeo del pipeline de configuración
       - ./logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
-      # Mapeo de la carpeta data para que lea el CSV, los logs y el JSON
       - ./data:/usr/share/logstash/data:ro
     depends_on:
       - elasticsearch
@@ -52,6 +50,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     networks:
       - elk_network
 
