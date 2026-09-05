@@ -31,6 +31,7 @@ services:
     volumes:
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
       - ./data:/usr/share/logstash/data:ro
+      - ./drivers:/usr/share/logstash/drivers:ro
     depends_on:
       - elasticsearch
       - postgres
@@ -41,14 +42,15 @@ services:
     image: postgres:15
     container_name: postgres_taller
     environment:
-      - POSTGRES_USER=usuario_taller
-      - POSTGRES_PASSWORD=password_taller
-      - POSTGRES_DB=bd_taller
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./data:/data:ro
     networks:
       - elk_network
 
