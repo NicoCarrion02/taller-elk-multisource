@@ -28,9 +28,11 @@ services:
   logstash:
     image: docker.elastic.co/logstash/logstash:8.10.2
     container_name: logstash_taller
+    env_file:
+      - .env
     volumes:
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
-      - ./data:/usr/share/logstash/data:ro
+      - ./data:/usr/share/logstash/my_data:ro
       - ./drivers:/usr/share/logstash/drivers:ro
     depends_on:
       - elasticsearch
