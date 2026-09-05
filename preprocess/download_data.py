@@ -17,3 +17,8 @@ def download_data(dataset, path):
     os.makedirs(dir_path, exist_ok=True)
     saved_path = kagglehub.dataset_download(dataset)
     shutil.move(saved_path, path)
+
+def copy_data_to_dst(ori: str, dst: str, files: list[str]):
+  os.makedirs(dst, exist_ok=True)
+  for f in files:
+    shutil.copy(os.path.join(ori, f), os.path.join(dst, f))

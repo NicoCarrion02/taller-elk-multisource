@@ -116,7 +116,7 @@ def load_csv_to_db(
       chunksize=chunksize
   )
 
-def ingest_data(file_names: List[str], db_type: str):
+def ingest_data(file_names: list[str], db_type: str):
   if db_type not in ['postgres', 'mysql']:
     raise ValueError('db_type must be postgres or mysql')
   
