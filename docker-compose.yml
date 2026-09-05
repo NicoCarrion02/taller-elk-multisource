@@ -49,21 +49,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - elk_network
-
-  mysql:
-    image: mysql:8.0
-    container_name: mysql_taller
-    environment:
-      - MYSQL_ROOT_PASSWORD=root_password_taller
-      - MYSQL_DATABASE=bd_taller
-      - MYSQL_USER=usuario_taller
-      - MYSQL_PASSWORD=password_taller
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     networks:
       - elk_network
 
