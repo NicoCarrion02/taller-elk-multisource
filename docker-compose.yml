@@ -34,7 +34,6 @@ services:
     depends_on:
       - elasticsearch
       - postgres
-      - mysql
     networks:
       - elk_network
 
