@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
@@ -36,6 +34,7 @@ services:
     depends_on:
       - elasticsearch
       - postgres
+      - mysql
     networks:
       - elk_network
 
@@ -43,14 +42,28 @@ services:
     image: postgres:15
     container_name: postgres_taller
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=usuario_taller
+      - POSTGRES_PASSWORD=password_taller
+      - POSTGRES_DB=bd_taller
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - elk_network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_taller
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password_taller
+      - MYSQL_DATABASE=bd_taller
+      - MYSQL_USER=usuario_taller
+      - MYSQL_PASSWORD=password_taller
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
     networks:
       - elk_network
 
@@ -58,6 +71,8 @@ volumes:
   es_data:
     driver: local
   postgres_data:
+    driver: local
+  mysql_data:
     driver: local
 
 networks:

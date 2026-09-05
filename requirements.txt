@@ -1,3 +1,7 @@
 ipykernel
 pandas
 kagglehub
+sqlalchemy
+psycopg2-binary
+pymysql
+python-dotenv
