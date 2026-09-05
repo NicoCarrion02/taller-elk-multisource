@@ -58,8 +58,6 @@ volumes:
     driver: local
   postgres_data:
     driver: local
-  mysql_data:
-    driver: local
 
 networks:
   elk_network:
