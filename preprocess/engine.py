@@ -4,5 +4,5 @@ import os
 import json
 
 def engine():
-  path = download_data("olistbr/brazilian-ecommerce", "data/raw/olist_order_reviews_dataset")
-  
+  path = "data/raw/olist_order_reviews_dataset"
+  download_data("olistbr/brazilian-ecommerce", path)
