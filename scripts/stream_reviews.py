@@ -1,7 +1,7 @@
 import time
 
 print("Iniciando stream de reviews...")
-csv_file = './data/olist_order_reviews_dataset.csv'
+csv_file = './data/processed/olist_order_reviews_dataset.csv'
 log_file = './data/reviews.log'
 
 # Limpiar o crear el archivo de log vacío

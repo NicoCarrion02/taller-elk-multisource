@@ -6,9 +6,9 @@ import os
 print("Cargando y procesando red espacial de Olist...")
 
 # Cargar datasets
-orders = pd.read_csv('./data/olist_orders_dataset.csv')
-customers = pd.read_csv('./data/olist_customers_dataset.csv')
-geo = pd.read_csv('./data/olist_geolocation_dataset.csv')
+orders = pd.read_csv('./data/processed/olist_orders_dataset.csv')
+customers = pd.read_csv('./data/processed/olist_customers_dataset.csv')
+geo = pd.read_csv('./data/processed/olist_geolocation_dataset.csv')
 
 # Filtrar red por centroides para evitar duplicados de coordenadas por código postal
 geo_centroids = geo.groupby('geolocation_zip_code_prefix').agg({
