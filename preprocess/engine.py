@@ -25,7 +25,7 @@ def engine():
   ]
 
   root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-  copy_data_to_dst(os.path.join(root_dir, path), os.path.join(root_dir, 'data', 'processed'), files) 
+  copy_data_to_dst(os.path.join(root_dir, path), os.path.join(root_dir, 'data'), files) 
 
   print('Everything that could fail, did not fail. c:')
 
