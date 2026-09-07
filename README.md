@@ -83,14 +83,14 @@ El archivo `logstash/pipeline/logstash.config` define el pipeline con los siguie
 7. Abrir Kibana en `http://localhost:5601`.
 8. Crear los índices en Discover o crear un Dashboard de prueba.
 9. Se puede cargar el dashboards creado en `kibana/export.ndjson`
-    9.1. Abrir Kibana en el navegador `http://localhost:5601`.
-    9.2. Abrir el menú de navegación principal (el icono de la hamburguesa en la esquina superior izquierda).
-    9.3. Ir a Management → Stack Management.
-    9.4. En la barra lateral izquierda, en la sección Kibana, hacer clic en Saved Objects.
-    9.5. Clic en el botón Import en la esquina superior derecha.
-    9.6. Arrastrar y soltar el archivo .ndjson (o hacer clic para buscarlo).
-    9.7. Mantener "Check for existing objects" o "Automatically overwrite all saved object conflicts" habilitado si deseas reemplazar versiones existentes.
-    9.8. Clic en Import, luego en Done.
+    1. Abrir Kibana en el navegador `http://localhost:5601`.
+    2. Abrir el menú de navegación principal (el icono de la hamburguesa en la esquina superior izquierda).
+    3. Ir a Management → Stack Management.
+    4. En la barra lateral izquierda, en la sección Kibana, hacer clic en Saved Objects.
+    5. Clic en el botón Import en la esquina superior derecha.
+    6. Arrastrar y soltar el archivo .ndjson (o hacer clic para buscarlo).
+    7. Mantener "Check for existing objects" o "Automatically overwrite all saved object conflicts" habilitado si deseas reemplazar versiones existentes.
+    8. Clic en Import, luego en Done.
 
 ## 6. Observaciones
 
